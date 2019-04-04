@@ -1,0 +1,9 @@
+<div class="search-container">
+  <h2>Search Github repository</h2>
+  <form #searchForm="ngForm" class="search-form">
+    <div class="form-group">
+      <input type="text" id="repository" name="repository" class="form-control search-input" [(ngModel)]="repositoryName" required #repository="ngModel">
+    </div>
+  </form>
+  <button type="button" class="search-button" (click)="searchRepository()" [disabled]="!searchForm.form.valid">search</button>
+</div>

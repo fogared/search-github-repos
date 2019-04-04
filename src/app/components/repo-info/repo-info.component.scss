@@ -1,0 +1,97 @@
+.result-container {
+  position:absolute;
+  top: 70px;
+}
+.repo-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 700px;
+  border: 1px solid #c39ea0;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 5px;
+  background-color: #edf5e1;
+
+  .repo-list-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-right: 5px;
+  }
+
+  .info-main-items {
+    min-height: 30px;
+    margin-bottom: 5px;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: #5cdb95;
+    color: #05386b;
+    line-height: 30px;
+  }
+
+  .info-items {
+    line-height: 25px;
+    height: 25px;
+    min-width: 100px;
+    display: inline-block;
+    text-align: center;
+    color: #05386b;
+    background-color: #379683;
+    margin-bottom: 5px;
+    border: 1px solid;
+    padding: 0 3px;
+  }
+
+  .open-issues-button {
+    line-height: 25px;
+    height: 25px;
+    width: 200px;
+    display: inline-block;
+    text-align: center;
+    background-color: #05386b;
+    border-radius: 3px;
+    border: none;
+    position: absolute;
+    right: 10px;
+    color: #edf5e1;
+  }
+
+  .issue-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 30px;
+    margin-bottom: 5px;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: #8ee4af;
+    color: #05386b;
+    line-height: 30px;
+    width: 100%;
+  }
+
+  .issue-info {
+    line-height: 25px;
+    height: 25px;
+    min-width: 100px;
+    display: inline-block;
+    text-align: center;
+    background-color: #edf5e1;
+    margin-bottom: 5px;
+    border: 1px solid;
+    padding: 0 3px;
+    color: #05386b;
+  }
+
+  .issue-list {
+    display: block;
+    padding: 5px;
+  }
+
+  .unordered-list {
+    padding:10px;
+  }
+}

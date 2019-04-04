@@ -1,0 +1,35 @@
+<div class="result-container">
+  <div *ngIf="repoList && repoList.length>0">
+    <h3>Repositories</h3>
+    <ul class="unordered-list">
+      <li *ngFor="let repo of repoList" class="repo-list">
+        <div class="info-main-items">{{repo.url}}</div>
+        <div class="info-main-items" *ngIf="repo.description">{{repo.description}}</div>
+        <div>
+          <div class="info-items">{{repo.stargazers_count}} Stargazers</div>
+          <div class="info-items">{{repo.forks}} Forks</div>
+          <div class="info-items">{{repo.watchers_count}} Watchers</div>
+          <button class="open-issues-button" (click)="openIssues(repo)">Open available issues</button>
+        </div>
+        <div *ngIf="selectedRepo === repo.full_name && repo && repo.issues && repo.issues.length>0" (focus)="selectedRepo===repo.full_name" [@openClose]="selectedRepo === repo.full_name">
+          <h4>Available issues</h4>
+          <ul class="unordered-list">
+            <li *ngFor="let issue of repo.issues" class="issue-list">
+              <div class="issue-container">
+                <div class="issue-title">{{issue.title}}</div>
+                <div>
+                  <div class="issue-info">{{issue.state}}</div>
+                  <div class="issue-info">{{issue.comments}} comments</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="selectedRepo === repo.full_name && repo && (repo.issues && repo.issues.length==0)" [@openClose]="selectedRepo === repo.full_name">
+          <div>There is no available issues!</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="repoList && repoList.length==0">There is no repository with this name!</div>
+</div>

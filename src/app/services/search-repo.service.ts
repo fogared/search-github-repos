@@ -16,9 +16,10 @@ export class SearchRepoService {
   }
 
   getRepos(repoName: string) {
+      // Http get request to search repository, the return value is an Observable
       return this.http.get(`http://api.github.com/search/repositories?q=${repoName}`)
         .pipe(
-          map(
+          map( // map the result of the http request to Repo[] model
             (res: any) => {
               return this.repoList = res.items.map(item =>
                 new Repo(
@@ -29,22 +30,24 @@ export class SearchRepoService {
                   item.watchers_count,
                   item.forks,
                   null));}),
-          catchError(this.handleError));
+          catchError(this.handleError)); // call custom error handling
   }
 
+  // Http get request to search issues, the return value is an Observable
   getOpenIssues(fullName: string) {
     return this.http.get(`http://api.github.com/search/issues?q=repo:${fullName}`)
       .pipe(
-        map(
+        map( // map the result of the http request to Issue[] model
           (res: any) => {
             return this.repoList = res.items.map(item =>
               new Issue(
                 item.title,
                 item.state,
                 item.comments));}),
-        catchError(this.handleError));
+        catchError(this.handleError)); // call custom error handling
   }
 
+  // Custom error handling to the Http requests
   private handleError(error: HttpErrorResponse){
     console.error(`Error code: ${error.status}, Message: ${error.message}`);
     return throwError('Something happened');

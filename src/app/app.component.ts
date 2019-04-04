@@ -12,22 +12,17 @@ export class AppComponent {
   constructor() {
   }
 
+  // give this method to the search-repos component as an output parameter; update the repository list
   repoListUpdate(repoList: Repo[]) {
-    this.repolist = repoList.map(item =>
-      new Repo(
-        item.url,
-        item.description,
-        item.full_name,
-        item.stargazers_count,
-        item.watchers_count,
-        item.forks,
-        item.issues));
+    this.repolist = repoList;
   }
 
+  // give this method to the repo-info component as an output parameter; update the repository list with the issues of the selected repos
   addIssueToRepo(data: any) {
     this.repolist = data.repoList.map(item => {
       let issues = item.issues;
 
+      // update the issues of the selected repo
       if (item.full_name === data.fullName) {
         issues = data.issueList;
       }

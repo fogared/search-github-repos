@@ -32,14 +32,19 @@ export class RepoInfoComponent implements OnInit {
   @Output() addIssueToRepo: EventEmitter<object> = new EventEmitter<object>();
   selectedRepo: string;
 
+  // inject the SearchRepoService
   constructor(private searchService: SearchRepoService) { }
 
   ngOnInit() {
   }
 
+  // update the repoList when click on open available issues button
   openIssues(repo: Repo) {
+    // set the selected repo to open the issue list
     this.selectedRepo = repo.full_name;
+    // call the injected SearchReposervice getOpenIssues method and subscribe of the Observable
     this.searchService.getOpenIssues(repo.full_name).subscribe(issues => {
+      // pass the result the EventEmitter, and update the repoList with the result
       this.addIssueToRepo.emit({repoList: this.repoList, issueList: issues, fullName: repo.full_name});
     });
   }

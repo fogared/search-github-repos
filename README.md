@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.7.
 
+## Prerequisites
+
+Angular requires Node.js version 8.x or 10.x. Download Node.js from nodejs.org.
+
+Angular, the Angular CLI, and Angular apps depend on npm packages. To download and install npm packages, you must have an npm package manager. The npm client command line interface is installed with Node.js. 
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

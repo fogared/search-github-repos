@@ -8,14 +8,12 @@ import { AppComponent } from './app.component';
 import { SearchReposComponent } from './components/search-repos/search-repos.component';
 import { RepoInfoComponent } from './components/repo-info/repo-info.component';
 import {SearchRepoService} from './services/search-repo.service';
-import { RepoChartComponent } from './components/repo-chart/repo-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchReposComponent,
-    RepoInfoComponent,
-    RepoChartComponent
+    RepoInfoComponent
   ],
   imports: [
     BrowserModule,

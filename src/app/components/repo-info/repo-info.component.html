@@ -3,7 +3,7 @@
     <h3>Repositories</h3>
     <ul class="unordered-list">
       <li *ngFor="let repo of repoList" class="repo-list">
-        <!--<app-repo-chart [repo]="repo"></app-repo-chart>-->
+        <!--<div class="repo-chart"></div>-->
         <div class="info-main-items">{{repo.url}}</div>
         <div class="info-main-items" *ngIf="repo.description">{{repo.description}}</div>
         <div>

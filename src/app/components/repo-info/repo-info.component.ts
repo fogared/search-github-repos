@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Repo} from '../../models/repo';
 import {SearchRepoService} from '../../services/search-repo.service';
+import * as d3 from "d3";
 import {
   trigger,
   state,
@@ -37,6 +38,19 @@ export class RepoInfoComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  /*ngAfterViewChecked() {
+    let repoChartList=d3.selectAll(".repo-chart")
+      .data(this.repoList);
+    debugger;
+    let repoChart = repoChartList.selectAll("div")
+      .data(function(d){return [d.stargazers_count, d.forks, d.watchers_count];})
+      .enter()
+      .append("div")
+      .attr("class","chart-element")
+      .style("width", function(d) { return d*10 + "px"; })
+      .text(function(d) { return d; });
+  }*/
 
   // update the repoList when click on open available issues button
   openIssues(repo: Repo) {

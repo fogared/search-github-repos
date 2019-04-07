@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {Repo} from '../../models/repo';
 import {SearchRepoService} from '../../services/search-repo.service';
 import * as d3 from "d3";
@@ -14,6 +14,7 @@ import {
   selector: 'app-repo-info',
   templateUrl: './repo-info.component.html',
   styleUrls: ['./repo-info.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('openClose', [
       state('open', style({
@@ -39,18 +40,39 @@ export class RepoInfoComponent implements OnInit {
   ngOnInit() {
   }
 
-  /*ngAfterViewChecked() {
+  //create repo chart after the view is loaded
+  ngAfterViewChecked() {
+    const width = 420;
+    const barHeight = 20;
+
+    // select repo-chart svg and pass the Repo[] data array
     let repoChartList=d3.selectAll(".repo-chart")
+      .attr("width", width)
+      .attr("height", barHeight * 3)
       .data(this.repoList);
-    debugger;
-    let repoChart = repoChartList.selectAll("div")
-      .data(function(d){return [d.stargazers_count, d.forks, d.watchers_count];})
+
+    // in all svg select/create bar element and pass a Repo data for them (only 3 element from the Repo object)
+    var bar = repoChartList.selectAll("g")
+      .data(function(d){return [{name: 'stargazers', value: d.stargazers_count},
+        {name: 'forks', value: d.forks}, {name: 'watchers', value: d.watchers_count}];})
       .enter()
-      .append("div")
-      .attr("class","chart-element")
-      .style("width", function(d) { return d*10 + "px"; })
-      .text(function(d) { return d; });
-  }*/
+      .append("g")
+      .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+
+    // create a rect in every bar of the chart and set the width
+    bar.append("rect")
+      .attr("width", function(d) { return d.value * 10 + "px"; })
+      .attr("height", barHeight - 1)
+      .attr("fill", "#379683");
+
+    // create text in every bar of the chart
+    bar.append("text")
+      .attr("x", function(d) { return 10 * d.value + 3; })
+      .attr("y", barHeight / 2)
+      .attr("dy", ".35em")
+      .attr("fill", "#05386b")
+      .text(function(d) { return `${d.name} ${d.value}`; });
+  }
 
   // update the repoList when click on open available issues button
   openIssues(repo: Repo) {

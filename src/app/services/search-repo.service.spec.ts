@@ -29,7 +29,7 @@ describe('SearchRepoService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('getRepos should return an Observable<Repo[]>', fakeAsync(() => {
+  it('getRepos should return an Observable<Repo[]>', () => {
     const dummyRepos: Repo[] = [
       { url: 'testurl1',
         description: 'description1',
@@ -52,13 +52,12 @@ describe('SearchRepoService', () => {
       expect(repos).toEqual(dummyRepos);
     });
 
-    tick();
     const req = httpMock.expectOne(`http://api.github.com/search/repositories?q=test`);
     expect(req.request.method).toBe("GET");
     req.flush(of(dummyRepos));
-  }));
+  });
 
-  it('getOpenIssues should return an Observable<Issue[]>', fakeAsync(() => {
+  it('getOpenIssues should return an Observable<Issue[]>', () => {
     const issueList: Issue[] = [
       {title: 'title1',
         state: 'state1',
@@ -72,9 +71,8 @@ describe('SearchRepoService', () => {
       expect(issues).toEqual(issueList);
     });
 
-    tick();
     const req = httpMock.expectOne(`http://api.github.com/search/issues?q=repo:name/reponame`);
     expect(req.request.method).toBe("GET");
     req.flush(of(issueList));
-  }));
+  });
 });
